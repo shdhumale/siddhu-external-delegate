@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1e3wti5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <bpmn:process id="siddhuexternaldelegate" isExecutable="true" camunda:historyTimeToLive="1000">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="name" label="name" type="string" />
+          <camunda:formField id="age" label="age" type="long" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>Flow_1lnigi5</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1lnigi5" sourceRef="StartEvent_1" targetRef="changevalue" />
+    <bpmn:sequenceFlow id="Flow_0090qpj" sourceRef="changevalue" targetRef="delegatetask" />
+    <bpmn:serviceTask id="changevalue" name="Change value ExternalTaskHandler" camunda:type="external" camunda:topic="changevalue">
+      <bpmn:incoming>Flow_1lnigi5</bpmn:incoming>
+      <bpmn:outgoing>Flow_0090qpj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="delegatetask" name="display  value delegate" camunda:delegateExpression="#{delegatetask}">
+      <bpmn:incoming>Flow_0090qpj</bpmn:incoming>
+      <bpmn:outgoing>Flow_03wwbsg</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0vse51q">
+      <bpmn:incoming>Flow_03wwbsg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_03wwbsg" sourceRef="delegatetask" targetRef="Event_0vse51q" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="siddhuexternaldelegate">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0t02r84_di" bpmnElement="changevalue">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1whvsr1_di" bpmnElement="delegatetask">
+        <dc:Bounds x="430" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vse51q_di" bpmnElement="Event_0vse51q">
+        <dc:Bounds x="592" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1lnigi5_di" bpmnElement="Flow_1lnigi5">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0090qpj_di" bpmnElement="Flow_0090qpj">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="430" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03wwbsg_di" bpmnElement="Flow_03wwbsg">
+        <di:waypoint x="530" y="117" />
+        <di:waypoint x="592" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
