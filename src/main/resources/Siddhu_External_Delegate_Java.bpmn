@@ -11,19 +11,19 @@
       <bpmn:outgoing>Flow_1lnigi5</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="Flow_1lnigi5" sourceRef="StartEvent_1" targetRef="changevalue" />
-    <bpmn:sequenceFlow id="Flow_0090qpj" sourceRef="changevalue" targetRef="delegatetask" />
+    <bpmn:sequenceFlow id="Flow_0090qpj" sourceRef="changevalue" targetRef="delegateTask" />
     <bpmn:serviceTask id="changevalue" name="Change value ExternalTaskHandler" camunda:type="external" camunda:topic="changevalue">
       <bpmn:incoming>Flow_1lnigi5</bpmn:incoming>
       <bpmn:outgoing>Flow_0090qpj</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="delegatetask" name="display  value delegate" camunda:delegateExpression="#{delegatetask}">
+    <bpmn:serviceTask id="delegateTask" name="display  value delegate" camunda:delegateExpression="#{delegateTask}">
       <bpmn:incoming>Flow_0090qpj</bpmn:incoming>
       <bpmn:outgoing>Flow_03wwbsg</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:endEvent id="Event_0vse51q">
       <bpmn:incoming>Flow_03wwbsg</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_03wwbsg" sourceRef="delegatetask" targetRef="Event_0vse51q" />
+    <bpmn:sequenceFlow id="Flow_03wwbsg" sourceRef="delegateTask" targetRef="Event_0vse51q" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="siddhuexternaldelegate">
@@ -33,7 +33,7 @@
       <bpmndi:BPMNShape id="Activity_0t02r84_di" bpmnElement="changevalue">
         <dc:Bounds x="270" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1whvsr1_di" bpmnElement="delegatetask">
+      <bpmndi:BPMNShape id="Activity_1whvsr1_di" bpmnElement="delegateTask">
         <dc:Bounds x="430" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0vse51q_di" bpmnElement="Event_0vse51q">
